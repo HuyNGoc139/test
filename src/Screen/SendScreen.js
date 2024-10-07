@@ -1,6 +1,6 @@
 import { View, Text, ImageBackground } from 'react-native';
 import HeaderComponent from '../Components/HeaderComponent';
-
+import DrawerSceneWrapper from '../Components/DrawerSceneWrapper';
 const SendScreen = () => {
   return (
     <ImageBackground
@@ -8,8 +8,10 @@ const SendScreen = () => {
       style={{ flex: 1 }}
       resizeMode="cover"
     >
-      <HeaderComponent title="SendScreen" />
-      <Text>SendScreen</Text>
+      <DrawerSceneWrapper>
+        <HeaderComponent title="SendScreen" />
+        <Text>SendScreen</Text>
+      </DrawerSceneWrapper>
     </ImageBackground>
   );
 };

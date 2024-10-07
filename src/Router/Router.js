@@ -58,6 +58,7 @@ const DrawerNavigator = () => (
       headerShown: false,
       drawerStyle: {
         backgroundColor: 'transparent',
+        width: '60%',
       },
       overlayColor: 'transparent',
       drawerType: 'slide',

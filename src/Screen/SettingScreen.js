@@ -11,6 +11,7 @@ import {
 import HeaderComponent from '../Components/HeaderComponent';
 import TextComponent from '../Components/TextComponent';
 import SpaceComponent from '../Components/SpaceComponent';
+import DrawerSceneWrapper from '../Components/DrawerSceneWrapper';
 const height = Dimensions.get('screen').height;
 const SettingScreen = ({ navigation }) => {
   return (
@@ -20,21 +21,23 @@ const SettingScreen = ({ navigation }) => {
         style={styles.container}
         resizeMode="cover"
       >
-        <HeaderComponent title="Settings" />
-        <ScrollView>
-          <TextComponent
-            title="User Info"
-            onPress={() => navigation.navigate('UserInfo')}
-            isNext
-          />
-          <TextComponent title="My Subscriptions" isNext />
-          <TextComponent title="Profile Tags" isNext />
-          <SpaceComponent height={height * 0.32} />
-          <TextComponent title="Terms & Conditions" />
-          <TextComponent title="Privacy Policy" />
-          <SpaceComponent height={100} />
-          <TextComponent title="Delete account" color />
-        </ScrollView>
+        <DrawerSceneWrapper>
+          <HeaderComponent title="Settings" />
+          <ScrollView>
+            <TextComponent
+              title="User Info"
+              onPress={() => navigation.navigate('UserInfo')}
+              isNext
+            />
+            <TextComponent title="My Subscriptions" isNext />
+            <TextComponent title="Profile Tags" isNext />
+            <SpaceComponent height={height * 0.32} />
+            <TextComponent title="Terms & Conditions" />
+            <TextComponent title="Privacy Policy" />
+            <SpaceComponent height={100} />
+            <TextComponent title="Delete account" color />
+          </ScrollView>
+        </DrawerSceneWrapper>
       </ImageBackground>
     </View>
   );

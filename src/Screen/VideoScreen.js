@@ -1,6 +1,6 @@
 import { View, Text, ImageBackground } from 'react-native';
 import HeaderComponent from '../Components/HeaderComponent';
-
+import DrawerSceneWrapper from '../Components/DrawerSceneWrapper';
 const VideoScreen = () => {
   return (
     <ImageBackground
@@ -8,8 +8,10 @@ const VideoScreen = () => {
       style={{ flex: 1 }}
       resizeMode="cover"
     >
-      <HeaderComponent title="VideoScreen" />
-      <Text>VideoScreen</Text>
+      <DrawerSceneWrapper>
+        <HeaderComponent title="VideoScreen" />
+        <Text>VideoScreen</Text>
+      </DrawerSceneWrapper>
     </ImageBackground>
   );
 };

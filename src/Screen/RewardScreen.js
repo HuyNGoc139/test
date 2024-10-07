@@ -1,6 +1,6 @@
 import { View, Text, ImageBackground } from 'react-native';
 import HeaderComponent from '../Components/HeaderComponent';
-
+import DrawerSceneWrapper from '../Components/DrawerSceneWrapper';
 const RewardScreen = () => {
   return (
     <ImageBackground
@@ -8,8 +8,10 @@ const RewardScreen = () => {
       style={{ flex: 1 }}
       resizeMode="cover"
     >
-      <HeaderComponent title="RewardScreen" />
-      <Text>RewardScreen</Text>
+      <DrawerSceneWrapper>
+        <HeaderComponent title="Reward" />
+        <Text>Reward</Text>
+      </DrawerSceneWrapper>
     </ImageBackground>
   );
 };

@@ -1,6 +1,6 @@
 import { View, Text, ImageBackground } from 'react-native';
 import HeaderComponent from '../Components/HeaderComponent';
-
+import DrawerSceneWrapper from '../Components/DrawerSceneWrapper';
 const DisclaimerScreen = () => {
   return (
     <ImageBackground
@@ -8,8 +8,10 @@ const DisclaimerScreen = () => {
       style={{ flex: 1 }}
       resizeMode="cover"
     >
-      <HeaderComponent title="DisclaimerScreen" />
-      <Text>DisclaimerScreen</Text>
+      <DrawerSceneWrapper>
+        <HeaderComponent title="DisclaimerScreen" />
+        <Text>DisclaimerScreen</Text>
+      </DrawerSceneWrapper>
     </ImageBackground>
   );
 };
