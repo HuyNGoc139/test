@@ -34,7 +34,7 @@ const LoginScreen = ({ navigation }) => {
     } else {
       dispatch(login(username, password)).then(() => {
         if (!error) {
-          navigation.navigate('Home');
+          // navigation.navigate('Home');
         }
       });
     }

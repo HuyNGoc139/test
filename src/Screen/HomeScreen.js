@@ -1,5 +1,13 @@
 import React from 'react';
-import { View, Text, Button, ImageBackground } from 'react-native';
+import {
+  View,
+  Text,
+  Button,
+  ImageBackground,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../redux/authActions';
 import { useState, useCallback } from 'react';
@@ -10,8 +18,7 @@ const HomeScreen = ({ navigation }) => {
 
   const handleLogout = useCallback(() => {
     dispatch(logout());
-    navigation.replace('Login');
-  }, [dispatch, navigation]);
+  }, [dispatch]);
 
   return (
     <ImageBackground
@@ -19,7 +26,13 @@ const HomeScreen = ({ navigation }) => {
       style={{ flex: 1 }}
       resizeMode="cover"
     >
-      <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }}>
+      <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
+        <Image
+          style={styles.image}
+          source={require('../../assets/MaskGroup.png')}
+        />
+      </TouchableOpacity>
+      <View style={{ alignItems: 'center', flex: 1 }}>
         <Text style={{ fontSize: 20, color: 'white' }}>
           Welcome, {user?.json?.username || 'User'}!
         </Text>
@@ -36,5 +49,9 @@ const HomeScreen = ({ navigation }) => {
     </ImageBackground>
   );
 };
-
+const styles = StyleSheet.create({
+  image: {
+    margin: 26,
+  },
+});
 export default HomeScreen;
