@@ -28,14 +28,14 @@ const months = [
 ];
 
 const StreakScreen = () => {
-  const [currentMonthIndex, setCurrentMonthIndex] = useState(moment().month()); 
+  const [currentMonthIndex, setCurrentMonthIndex] = useState(moment().month());
   const [currentMonth, setCurrentMonth] = useState(moment().format('YYYY-MM'));
-const [currentDate, setCurrentDate] = useState(moment())
+  const [currentDate, setCurrentDate] = useState(moment());
   const changeMonth = (index) => {
     const newMonth = moment().month(index).format('YYYY-MM');
-    
+
     let newDate = moment(currentDate);
-    if(index==11&&newDate.month() === 0){
+    if (index == 11 && newDate.month() === 0) {
     }
     setCurrentMonth(newMonth);
     setCurrentMonthIndex(index);
@@ -50,84 +50,39 @@ const [currentDate, setCurrentDate] = useState(moment())
       months[nextMonthIndex],
     ];
   };
-  // const markedDates = {
-  //   '2024-10-21': {
-  //     startingDay: true,
-  //     color: '#50cebb',
-  //     textColor: 'white',
-  //     customStyles: {
-  //       container: {
-  //         borderRadius: 150,
-  //         borderColor: 'white',
-  //         borderWidth: 1,
-  //         backgroundColor: 'rgba(255, 87, 137, 1)',
-  //       },
-  //     },
-  //   },
-  //   '2024-10-22': {
-  //     // color: '#70d7c7',
-  //     textColor: 'white',
-  //     customStyles: {
-  //       container: {
-  //         backgroundColor: 'rgba(0, 0, 0, 0.2)',
-  //         borderRadius:0,
-  //         margin:0,
-  //         padding: 0,
-  //       },
-  //     },
-  //   },
-  //   '2024-10-23': {
-  //     color: '#70d7c7',
-  //     textColor: 'white',
-  //     customStyles: {
-  //       container: {
-  //         backgroundColor: 'rgba(0, 0, 0, 0.2)',
-  //         borderRadius:0,
-  //         margin:0,
-  //         padding: 0,
-  //       },
-  //     },
-  //   },
-  //   '2024-10-24': {
-  //     color: '#70d7c7',
-  //     textColor: 'white',
-  //     customStyles: {
-  //       container: {
-  //         backgroundColor: 'rgba(0, 0, 0, 0.2)',
-  //         borderRadius:0,
-  //         margin:0,
-  //         padding: 0,
-  //       },
-  //     },
-  //   },
-  //   '2024-10-25': {
-  //     endingDay: true,
-  //     color: '#50cebb',
-  //     textColor: 'white',
-  //     customStyles: {
-  //       container: {
-  //         borderRadius: 150,
-  //         borderColor: 'white',
-  //         borderWidth: 1,
-  //         backgroundColor: 'rgba(255, 87, 137, 1)',
-  //       },
-  //     },
-  //   },
-  // };
   const markedDates = {
-    '2024-10-21': {
+    '2024-10-06': {
       startingDay: true,
-      color: '#rgba(255, 87, 137, 1)',
+      endingDay: false,
+      color: 'rgba(255, 87, 137, 1)', // Màu cho ngày bắt đầu
       textColor: 'white',
+      customStyles: {
+        container: {
+          borderRadius: 25, // Bo tròn góc
+          backgroundColor: 'rgba(255, 87, 137, 1)',
+        },
+      },
     },
-    '2024-10-22': {
-      color: '#rgba(0, 0, 0, 0.2)',
+    '2024-10-07': {
+      color: '#rgba(0, 0, 0, 0.2)', // Màu cho các ngày ở giữa
       textColor: 'white',
+      customStyles: {
+        container: {
+          borderRadius: 0,
+          backgroundColor: '#rgba(0, 0, 0, 0.2)',
+        },
+      },
     },
-    '2024-10-23': {
+    '2024-10-08': {
       endingDay: true,
-      color: '#rgba(255, 87, 137, 1)',
+      color: 'rgba(255, 87, 137, 1)', // Màu cho ngày kết thúc
       textColor: 'white',
+      customStyles: {
+        container: {
+          borderRadius: 25, // Bo tròn góc
+          backgroundColor: 'rgba(255, 87, 137, 1)',
+        },
+      },
     },
   };
   return (
@@ -176,34 +131,23 @@ const [currentDate, setCurrentDate] = useState(moment())
 
           <Calendar
             key={currentMonth} // Sử dụng key để buộc render lại khi currentMonth thay đổi
-            current={currentMonth} 
+            current={currentMonth}
             theme={{
-              backgroundColor: 'transparent', 
+              backgroundColor: 'transparent',
               calendarBackground: 'transparent',
               textSectionTitleColor: 'rgba(255, 255, 255, 1)',
-              selectedDayBackgroundColor : '#00adf5' , 
+              selectedDayBackgroundColor: '#00adf5',
               todayTextColor: '#ff6347',
               dayTextColor: 'rgba(255, 255, 255, 1)',
               monthTextColor: 'white',
               arrowColor: 'white',
-              'stylesheet.day.basic': {
-                // Tùy chỉnh cho ngày bắt đầu
-                startingDay: {
-                  borderTopLeftRadius: 10,
-                  borderBottomLeftRadius: 10,
-                  borderColor: 'white',
-                  borderWidth: 1,
-                },
-                // Tùy chỉnh cho ngày kết thúc
-                endingDay: {
-                  borderRadius:170,
-                  borderColor: 'white',
-                  borderWidth: 1,
-                },
-              },
+              dayTextColor: 'rgba(255, 255, 255, 1)',
             }}
             markingType={'period'}
             markedDates={markedDates}
+            // onDayPress={day => {
+            //   console.log('selected day', day);
+            // }}
             monthFormat={'MMMM yyyy'}
             // hideExtraDays={true}
             hideArrows={true}

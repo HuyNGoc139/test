@@ -39,14 +39,12 @@ function CustomDrawerContent(props) {
       style={{ flex: 1 }}
       resizeMode="cover"
     >
-      <View style={{marginLeft:45, marginTop: 50 }}>
+      <View style={{ marginLeft: 45, marginTop: 50 }}>
         <Image
           source={{ uri: 'https://randomuser.me/api/portraits/men/41.jpg' }}
           style={styles.image}
         />
-        <Text style={styles.name}>
-          {'James B.'}
-        </Text>
+        <Text style={styles.name}>{'James B.'}</Text>
       </View>
       <DrawerItemList {...props} />
     </ImageBackground>
@@ -153,7 +151,7 @@ const Router = () => {
       {isLogin ? (
         <>
           <Stack.Screen name="Drawer" component={DrawerNavigator} />
-          <Stack.Screen name="UserInfo" component={UserInfo}/>
+          <Stack.Screen name="UserInfo" component={UserInfo} />
           <Stack.Screen name="StreakScreen" component={StreakScreen} />
         </>
       ) : (
@@ -162,18 +160,20 @@ const Router = () => {
     </Stack.Navigator>
   );
 };
-const styles=StyleSheet.create({
-  image:{
-    width:65,
-    height:65,
-    borderWidth:4,
-    borderRadius:170,
-    borderColor:'rgba(200, 216, 222, 0.9)'
+const styles = StyleSheet.create({
+  image: {
+    width: 65,
+    height: 65,
+    borderWidth: 4,
+    borderRadius: 170,
+    borderColor: 'rgba(200, 216, 222, 0.9)',
   },
-  name:{
-    marginTop: 10, fontWeight: 'bold', color: 'white',
-    fontSize:24,
-    marginBottom:10
-  }
-})
+  name: {
+    marginTop: 10,
+    fontWeight: 'bold',
+    color: 'white',
+    fontSize: 24,
+    marginBottom: 10,
+  },
+});
 export default Router;

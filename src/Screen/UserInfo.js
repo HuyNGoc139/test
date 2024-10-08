@@ -24,27 +24,27 @@ const UserInfo = () => {
         resizeMode="cover"
       >
         <HeaderComponent title="User Info" />
-          <ScrollView>
-            <View style={styles.viewImage}>
-              <Image
-                style={styles.image}
-                source={{ uri: 'https://randomuser.me/api/portraits/men/41.jpg' }}
-              />
-              <TouchableOpacity>
-                <Text style={styles.text}>Change profile photo</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.infomation}>
-              <UserInfoInput label="First Name" value="Renata" />
-              <UserInfoInput label="Last Name" value="Andryshyn" />
-              <UserInfoInput label="Email" value={user?.json?.username} />
-              <UserInfoInput
-                label="Password"
-                value={user?.json?.password}
-                secureTextEntry
-              />
-            </View>
-          </ScrollView>
+        <ScrollView>
+          <View style={styles.viewImage}>
+            <Image
+              style={styles.image}
+              source={{ uri: 'https://randomuser.me/api/portraits/men/41.jpg' }}
+            />
+            <TouchableOpacity>
+              <Text style={styles.text}>Change profile photo</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.infomation}>
+            <UserInfoInput label="First Name" value="Renata" />
+            <UserInfoInput label="Last Name" value="Andryshyn" />
+            <UserInfoInput label="Email" value={user?.json?.username} />
+            <UserInfoInput
+              label="Password"
+              value={user?.json?.password}
+              secureTextEntry
+            />
+          </View>
+        </ScrollView>
       </ImageBackground>
     </View>
   );
@@ -64,12 +64,12 @@ const styles = StyleSheet.create({
     color: 'rgba(255, 88, 137, 1)',
   },
   image: {
-    width:85,
-    height:85,
+    width: 85,
+    height: 85,
     marginBottom: 12,
-    borderWidth:4,
-    borderRadius:170,
-    borderColor:'rgba(200, 216, 222, 0.9)'
+    borderWidth: 4,
+    borderRadius: 170,
+    borderColor: 'rgba(200, 216, 222, 0.9)',
   },
   infomation: {
     marginTop: 20,
