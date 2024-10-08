@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { logout } from '../../redux/authActions';
+import { logout } from '../redux/authActions';
 import { useState, useCallback } from 'react';
 import DrawerSceneWrapper from '../Components/DrawerSceneWrapper';
 const HomeScreen = ({ navigation }) => {
@@ -23,7 +23,7 @@ const HomeScreen = ({ navigation }) => {
 
   return (
     <ImageBackground
-      source={require('../../assets/bg.png')}
+      source={require('../assets/bg.png')}
       style={{ flex: 1 }}
       resizeMode="cover"
     >
@@ -31,7 +31,7 @@ const HomeScreen = ({ navigation }) => {
         <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
           <Image
             style={styles.image}
-            source={require('../../assets/MaskGroup.png')}
+            source={require('../assets/MaskGroup.png')}
           />
         </TouchableOpacity>
         <View style={{ alignItems: 'center', flex: 1 }}>

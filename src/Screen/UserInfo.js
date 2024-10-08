@@ -19,7 +19,7 @@ const UserInfo = () => {
   return (
     <View style={styles.container}>
       <ImageBackground
-        source={require('../../assets/bg.png')}
+        source={require('../assets/bg.png')}
         style={styles.container}
         resizeMode="cover"
       >

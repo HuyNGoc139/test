@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import {
   View,
   Text,
@@ -11,6 +11,7 @@ import { Calendar } from 'react-native-calendars';
 import HeaderComponent from '../Components/HeaderComponent';
 import moment from 'moment';
 import LinearGradient from 'react-native-linear-gradient';
+import SpaceComponent from '../Components/SpaceComponent';
 
 const months = [
   'January',
@@ -31,16 +32,14 @@ const StreakScreen = () => {
   const [currentMonthIndex, setCurrentMonthIndex] = useState(moment().month());
   const [currentMonth, setCurrentMonth] = useState(moment().format('YYYY-MM'));
   const [currentDate, setCurrentDate] = useState(moment());
-  const changeMonth = (index) => {
-    const newMonth = moment().month(index).format('YYYY-MM');
 
-    let newDate = moment(currentDate);
-    if (index == 11 && newDate.month() === 0) {
-    }
+  const changeMonth = useCallback((index) => {
+    const newMonth = moment().month(index).format('YYYY-MM');
     setCurrentMonth(newMonth);
     setCurrentMonthIndex(index);
-  };
-  const getDisplayedMonths = () => {
+  }, []);
+
+  const getDisplayedMonths = useMemo(() => {
     const previousMonthIndex =
       currentMonthIndex === 0 ? 11 : currentMonthIndex - 1;
     const nextMonthIndex = currentMonthIndex === 11 ? 0 : currentMonthIndex + 1;
@@ -49,46 +48,57 @@ const StreakScreen = () => {
       months[currentMonthIndex],
       months[nextMonthIndex],
     ];
-  };
-  const markedDates = {
-    '2024-10-06': {
-      startingDay: true,
-      endingDay: false,
-      color: 'rgba(255, 87, 137, 1)', // Màu cho ngày bắt đầu
-      textColor: 'white',
-      customStyles: {
-        container: {
-          borderRadius: 25, // Bo tròn góc
-          backgroundColor: 'rgba(255, 87, 137, 1)',
+  }, [currentMonthIndex]);
+
+  const markedDates = useMemo(
+    () => ({
+      '2024-10-06': {
+        startingDay: true,
+        endingDay: false,
+        color: 'rgba(255, 87, 137, 1)', // Màu cho ngày bắt đầu
+        textColor: 'white',
+        customStyles: {
+          container: {
+            borderRadius: 25, // Bo tròn góc
+            backgroundColor: 'rgba(255, 87, 137, 1)',
+          },
         },
       },
-    },
-    '2024-10-07': {
-      color: '#rgba(0, 0, 0, 0.2)', // Màu cho các ngày ở giữa
-      textColor: 'white',
-      customStyles: {
-        container: {
-          borderRadius: 0,
-          backgroundColor: '#rgba(0, 0, 0, 0.2)',
+      '2024-10-07': {
+        color: 'rgba(0, 0, 0, 0.2)', // Màu cho các ngày ở giữa
+        textColor: 'white',
+        customStyles: {
+          container: {
+            borderRadius: 0,
+            backgroundColor: 'rgba(0, 0, 0, 0.2)',
+          },
         },
       },
-    },
-    '2024-10-08': {
-      endingDay: true,
-      color: 'rgba(255, 87, 137, 1)', // Màu cho ngày kết thúc
-      textColor: 'white',
-      customStyles: {
-        container: {
-          borderRadius: 25, // Bo tròn góc
-          backgroundColor: 'rgba(255, 87, 137, 1)',
+      '2024-10-08': {
+        endingDay: true,
+        color: 'rgba(255, 87, 137, 1)', // Màu cho ngày kết thúc
+        textColor: 'white',
+        customStyles: {
+          container: {
+            borderRadius: 25, // Bo tròn góc
+            backgroundColor: 'rgba(255, 87, 137, 1)',
+          },
         },
       },
-    },
-  };
+    }),
+    []
+  );
+
+  const onMonthChange = useCallback((date) => {
+    const newMonth = moment(date.dateString).format('YYYY-MM');
+    setCurrentMonth(newMonth);
+    setCurrentMonthIndex(moment(date.dateString).month());
+  }, []);
+
   return (
     <View style={styles.container}>
       <ImageBackground
-        source={require('../../assets/bg.png')}
+        source={require('../assets/bg.png')}
         style={styles.container}
         resizeMode="cover"
       >
@@ -96,17 +106,17 @@ const StreakScreen = () => {
         <View style={styles.streakContainer}>
           <Image
             style={{ marginRight: 16 }}
-            source={require('../../assets/ic_aim1.png')}
+            source={require('../assets/ic_aim1.png')}
           />
           <View>
             <Text style={styles.streakText}>Current streak: 1</Text>
             <Text style={styles.longestStreakText}>Longest streak: 2</Text>
           </View>
         </View>
-
+        <SpaceComponent height={30}/>
         <View style={styles.calenderContainer}>
           <View style={styles.monthNavigation}>
-            {getDisplayedMonths().map((month, index) => (
+            {getDisplayedMonths.map((month, index) => (
               <TouchableOpacity
                 key={index}
                 onPress={() => changeMonth(months.indexOf(month))}
@@ -145,19 +155,11 @@ const StreakScreen = () => {
             }}
             markingType={'period'}
             markedDates={markedDates}
-            // onDayPress={day => {
-            //   console.log('selected day', day);
-            // }}
             monthFormat={'MMMM yyyy'}
-            // hideExtraDays={true}
             hideArrows={true}
             renderHeader={() => null}
             firstDay={1}
-            onMonthChange={(date) => {
-              const newMonth = moment(date.dateString).format('YYYY-MM');
-              setCurrentMonth(newMonth);
-              setCurrentMonthIndex(moment(date.dateString).month());
-            }}
+            onMonthChange={onMonthChange}
           />
         </View>
       </ImageBackground>
@@ -172,12 +174,13 @@ const styles = StyleSheet.create({
   calenderContainer: {
     marginLeft: 20,
     marginRight: 20,
+    // marginBottom:50
   },
   streakContainer: {
-    backgroundColor: '#rgba(0, 0, 0, 0.2)',
+    backgroundColor: 'rgba(0, 0, 0, 0.2)',
     borderRadius: 20,
     flexDirection: 'row',
-    height: 70,
+    height: 80,
     alignItems: 'center',
     margin: 20,
     paddingLeft: 20,
@@ -189,7 +192,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   longestStreakText: {
-    color: '#rgba(130, 129, 135, 1)',
+    color: 'rgba(130, 129, 135, 1)',
     fontSize: 13,
     marginTop: 5,
     fontWeight: '300',
@@ -204,13 +207,13 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   monthText: {
-    color: '#rgba(130, 129, 135, 1)',
+    color: 'rgba(130, 129, 135, 1)',
     fontSize: 15,
     marginBottom: 20,
     fontWeight: '500',
   },
   activeMonth: {
-    color: '#rgba(255, 255, 255, 1)',
+    color: 'rgba(255, 255, 255, 1)',
   },
   activeSeparator: {
     height: 2,

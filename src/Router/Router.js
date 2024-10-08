@@ -35,7 +35,7 @@ function CustomDrawerContent(props) {
 
   return (
     <ImageBackground
-      source={require('../../assets/bg.png')} // Sử dụng cùng ảnh nền như HomeScreen
+      source={require('../assets/bg.png')} // Sử dụng cùng ảnh nền như HomeScreen
       style={{ flex: 1 }}
       resizeMode="cover"
     >

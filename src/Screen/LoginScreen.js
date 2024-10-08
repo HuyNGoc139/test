@@ -13,11 +13,12 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
-import { validateEmail, validatePassword } from '../function/validate';
-import { login } from '../../redux/authActions';
+import { validateEmail, validatePassword } from '../Utils/validate';
+
 import SpaceComponent from '../Components/SpaceComponent';
 import InputComponent from '../Components/InputComponent';
 import ButtonComponent from '../Components/ButtonComponent';
+import { login } from '../redux/authActions';
 const LoginScreen = ({ navigation }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -44,15 +45,12 @@ const LoginScreen = ({ navigation }) => {
     <View style={{ flex: 1 }}>
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
         <ImageBackground
-          source={require('../../assets/bg.png')}
+          source={require('../assets/bg.png')}
           style={styles.container}
           resizeMode="cover"
         >
           <View style={styles.header}>
-            <Image
-              source={require('../../assets/logo.png')}
-              style={styles.logo}
-            />
+            <Image source={require('../assets/logo.png')} style={styles.logo} />
             <View style={{ marginLeft: 20 }}>
               <Text style={styles.upnow}>UpNow</Text>
               <Text style={styles.text}>Digital Hypnotherapy</Text>
@@ -68,7 +66,7 @@ const LoginScreen = ({ navigation }) => {
               placeholder="Email"
               value={username}
               onChangeText={setUsername}
-              iconSource={require('../../assets/ic_mail.png')}
+              iconSource={require('../assets/ic_mail.png')}
             />
             <InputComponent
               inputpassword
@@ -76,7 +74,7 @@ const LoginScreen = ({ navigation }) => {
               value={password}
               onChangeText={setPassword}
               secureTextEntry
-              iconSource={require('../../assets/Vector.png')}
+              iconSource={require('../assets/Vector.png')}
             />
 
             <TouchableOpacity>
@@ -104,13 +102,13 @@ const LoginScreen = ({ navigation }) => {
             <ButtonComponent
               title="Log in with Facebook"
               backgroundColor="#rgba(63, 96, 178, 1)"
-              source={require('../../assets/fb.png')}
+              source={require('../assets/fb.png')}
             />
 
             <ButtonComponent
               title="Log in with Apple"
               backgroundColor="#000"
-              source={require('../../assets/Vector1.png')}
+              source={require('../assets/Vector1.png')}
             />
           </View>
         </ImageBackground>
