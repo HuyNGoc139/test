@@ -3,7 +3,7 @@ import {
   createDrawerNavigator,
   DrawerItemList,
 } from '@react-navigation/drawer';
-import { ImageBackground, View, Text, Image } from 'react-native';
+import { ImageBackground, View, Text, Image, StyleSheet } from 'react-native';
 import { useSelector } from 'react-redux';
 import HomeScreen from '../Screen/HomeScreen';
 import SettingScreen from '../Screen/SettingScreen';
@@ -18,14 +18,17 @@ import SendScreen from '../Screen/SendScreen';
 import VideoScreen from '../Screen/VideoScreen';
 import HelpScreen from '../Screen/HelpandSupport';
 import DisclaimerScreen from '../Screen/Disclaimer';
+import StreakScreen from '../Screen/StreakScreen';
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 const drawerIcon = ({ focused, size }, name) => (
-  <Icon
-    name={name}
-    color={focused ? 'rgba(247, 112, 152, 1)' : 'rgba(149, 158, 167, 1)'}
-    size={size}
-  />
+  <View style={{ width: 26, justifyContent: 'center', alignItems: 'center' }}>
+    <Icon
+      name={name}
+      color={focused ? 'rgba(247, 112, 152, 1)' : 'rgba(149, 158, 167, 1)'}
+      size={size}
+    />
+  </View>
 );
 function CustomDrawerContent(props) {
   const userName = useSelector((state) => state.auth.user?.json?.username);
@@ -36,13 +39,13 @@ function CustomDrawerContent(props) {
       style={{ flex: 1 }}
       resizeMode="cover"
     >
-      <View style={{ alignItems: 'center', marginTop: 50 }}>
+      <View style={{marginLeft:45, marginTop: 50 }}>
         <Image
           source={{ uri: 'https://randomuser.me/api/portraits/men/41.jpg' }}
-          style={{ width: 80, height: 80, borderRadius: 40 }}
+          style={styles.image}
         />
-        <Text style={{ marginTop: 10, fontWeight: 'bold', color: 'white' }}>
-          {userName || 'James B.'}
+        <Text style={styles.name}>
+          {'James B.'}
         </Text>
       </View>
       <DrawerItemList {...props} />
@@ -150,7 +153,8 @@ const Router = () => {
       {isLogin ? (
         <>
           <Stack.Screen name="Drawer" component={DrawerNavigator} />
-          <Stack.Screen name="UserInfo" component={UserInfo} />
+          <Stack.Screen name="UserInfo" component={UserInfo}/>
+          <Stack.Screen name="StreakScreen" component={StreakScreen} />
         </>
       ) : (
         <Stack.Screen name="Login" component={LoginScreen} />
@@ -158,5 +162,18 @@ const Router = () => {
     </Stack.Navigator>
   );
 };
-
+const styles=StyleSheet.create({
+  image:{
+    width:65,
+    height:65,
+    borderWidth:4,
+    borderRadius:170,
+    borderColor:'rgba(200, 216, 222, 0.9)'
+  },
+  name:{
+    marginTop: 10, fontWeight: 'bold', color: 'white',
+    fontSize:24,
+    marginBottom:10
+  }
+})
 export default Router;

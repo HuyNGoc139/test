@@ -1,6 +1,6 @@
 import { View, Text, ImageBackground } from 'react-native';
 import HeaderComponent from '../Components/HeaderComponent';
-
+import DrawerSceneWrapper from '../Components/DrawerSceneWrapper';
 const RemiderScreen = () => {
   return (
     <ImageBackground
@@ -8,8 +8,10 @@ const RemiderScreen = () => {
       style={{ flex: 1 }}
       resizeMode="cover"
     >
-      <HeaderComponent title="RemiderScreen" />
-      <Text>RemiderScreen</Text>
+      <DrawerSceneWrapper>
+        <HeaderComponent title="Remider" />
+        <Text>Remider</Text>
+      </DrawerSceneWrapper>
     </ImageBackground>
   );
 };

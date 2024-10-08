@@ -24,12 +24,11 @@ const UserInfo = () => {
         resizeMode="cover"
       >
         <HeaderComponent title="User Info" />
-        <DrawerSceneWrapper>
           <ScrollView>
             <View style={styles.viewImage}>
               <Image
                 style={styles.image}
-                source={require('../../assets/avatar.png')}
+                source={{ uri: 'https://randomuser.me/api/portraits/men/41.jpg' }}
               />
               <TouchableOpacity>
                 <Text style={styles.text}>Change profile photo</Text>
@@ -46,7 +45,6 @@ const UserInfo = () => {
               />
             </View>
           </ScrollView>
-        </DrawerSceneWrapper>
       </ImageBackground>
     </View>
   );
@@ -66,7 +64,12 @@ const styles = StyleSheet.create({
     color: 'rgba(255, 88, 137, 1)',
   },
   image: {
+    width:85,
+    height:85,
     marginBottom: 12,
+    borderWidth:4,
+    borderRadius:170,
+    borderColor:'rgba(200, 216, 222, 0.9)'
   },
   infomation: {
     marginTop: 20,

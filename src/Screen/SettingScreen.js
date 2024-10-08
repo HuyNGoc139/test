@@ -1,9 +1,7 @@
 import React from 'react';
 import {
   View,
-  Text,
   StyleSheet,
-  TouchableOpacity,
   ScrollView,
   ImageBackground,
   Dimensions,
@@ -12,7 +10,9 @@ import HeaderComponent from '../Components/HeaderComponent';
 import TextComponent from '../Components/TextComponent';
 import SpaceComponent from '../Components/SpaceComponent';
 import DrawerSceneWrapper from '../Components/DrawerSceneWrapper';
+
 const height = Dimensions.get('screen').height;
+
 const SettingScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
@@ -29,7 +29,11 @@ const SettingScreen = ({ navigation }) => {
               onPress={() => navigation.navigate('UserInfo')}
               isNext
             />
-            <TextComponent title="My Subscriptions" isNext />
+            <TextComponent
+              title="My Subscriptions"
+              isNext
+              onPress={() => navigation.navigate('StreakScreen')}
+            />
             <TextComponent title="Profile Tags" isNext />
             <SpaceComponent height={height * 0.32} />
             <TextComponent title="Terms & Conditions" />

@@ -22,7 +22,6 @@ const DrawerSceneWrapper = ({ children }) => {
           )}deg`,
         },
       ],
-      borderRadius: 20,
       overflow: 'hidden',
     };
   });
@@ -39,5 +38,10 @@ export default DrawerSceneWrapper;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    shadowColor: '#000', // Màu đổ bóng
+    shadowOffset: { width: 0, height: 5 }, // Vị trí đổ bóng
+    shadowOpacity: 0.3, // Độ mờ của bóng
+    shadowRadius: 10, // Bán kính bóng
+    elevation: 10, // Độ cao (chỉ Android)
   },
 });
