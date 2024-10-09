@@ -67,10 +67,10 @@ const DrawerNavigator = () => (
       headerShown: false,
       drawerStyle: {
         backgroundColor: 'transparent',
-        width: '60%',
-        height: '80%', // Thiết lập chiều cao drawer là 80%
+        width: '56%',
+        height: '86%', // Thiết lập chiều cao drawer là 80%
         position: 'absolute', // Giúp căn giữa drawer
-        top: '8%', // Căn giữa từ trên xuống
+        top: '7%', // Căn giữa từ trên xuống
       },
       overlayColor: 'transparent',
       drawerActiveTintColor: 'rgba(255, 255, 255, 1)',
@@ -87,11 +87,12 @@ const DrawerNavigator = () => (
             ...options,
             source: require('../assets/ic_home_act.png'),
           }),
-        drawerLabelStyle: { fontWeight: 'bold' },
+        drawerLabelStyle: { fontWeight: 'bold' ,marginLeft:-10 },
         drawerLabelStyleInactive: { fontWeight: '400' },
         drawerItemStyle: {
           borderTopLeftRadius: 100,
           borderBottomLeftRadius: 100,
+          
         },
       }}
     />
@@ -101,7 +102,7 @@ const DrawerNavigator = () => (
       options={{
         drawerIcon: (options) =>
           drawerImage({ ...options, source: require('../assets/Group1.png') }),
-        drawerLabelStyle: { fontWeight: 'bold' },
+          drawerLabelStyle: { fontWeight: 'bold' ,marginLeft:-10 },
         drawerLabelStyleInactive: { fontWeight: '400' },
         drawerItemStyle: {
           borderTopLeftRadius: 100,
@@ -118,7 +119,7 @@ const DrawerNavigator = () => (
             ...options,
             source: require('../assets/ic_invite.png'),
           }),
-        drawerLabelStyle: { fontWeight: 'bold' },
+          drawerLabelStyle: { fontWeight: 'bold' ,marginLeft:-10 },
         drawerLabelStyleInactive: { fontWeight: '400' },
         drawerItemStyle: {
           borderTopLeftRadius: 100,
@@ -132,7 +133,7 @@ const DrawerNavigator = () => (
       options={{
         drawerIcon: (options) =>
           drawerImage({ ...options, source: require('../assets/Vector4.png') }),
-        drawerLabelStyle: { fontWeight: 'bold' },
+        drawerLabelStyle: { fontWeight: 'bold',marginLeft:-10 },
         drawerLabelStyleInactive: { fontWeight: '400' },
         drawerItemStyle: {
           borderTopLeftRadius: 100,
@@ -149,7 +150,7 @@ const DrawerNavigator = () => (
             ...options,
             source: require('../assets/ic_welcome.png'),
           }),
-        drawerLabelStyle: { fontWeight: 'bold' },
+        drawerLabelStyle: { fontWeight: 'bold',marginLeft:-10 },
         drawerLabelStyleInactive: { fontWeight: '400' },
         drawerItemStyle: {
           borderTopLeftRadius: 100,
@@ -163,7 +164,7 @@ const DrawerNavigator = () => (
       options={{
         drawerIcon: (options) =>
           drawerImage({ ...options, source: require('../assets/ic_help.png') }),
-        drawerLabelStyle: { fontWeight: 'bold' },
+        drawerLabelStyle: { fontWeight: 'bold',marginLeft:-10 },
         drawerLabelStyleInactive: { fontWeight: '400' },
         drawerItemStyle: {
           borderTopLeftRadius: 100,
@@ -177,7 +178,7 @@ const DrawerNavigator = () => (
       options={{
         drawerIcon: (options) =>
           drawerImage({ ...options, source: require('../assets/rewawrd.png') }),
-        drawerLabelStyle: { fontWeight: 'bold' },
+        drawerLabelStyle: { fontWeight: 'bold',marginLeft:-10 },
         drawerLabelStyleInactive: { fontWeight: '400' },
         drawerItemStyle: {
           borderTopLeftRadius: 100,
@@ -194,7 +195,7 @@ const DrawerNavigator = () => (
             ...options,
             source: require('../assets/ic_settings.png'),
           }),
-        drawerLabelStyle: { fontWeight: 'bold' },
+        drawerLabelStyle: { fontWeight: 'bold' ,marginLeft:-10},
         drawerLabelStyleInactive: { fontWeight: '400' },
         drawerItemStyle: {
           borderTopLeftRadius: 100,
@@ -211,7 +212,7 @@ const DrawerNavigator = () => (
             ...options,
             source: require('../assets/Group201.png'),
           }),
-        drawerLabelStyle: { fontWeight: 'bold' },
+        drawerLabelStyle: { fontWeight: 'bold' ,marginLeft:-10},
         drawerLabelStyleInactive: { fontWeight: '400' },
         drawerItemStyle: {
           borderTopLeftRadius: 100,

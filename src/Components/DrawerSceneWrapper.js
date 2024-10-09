@@ -15,14 +15,14 @@ const DrawerSceneWrapper = ({ children }) => {
       // Dịch chuyển sang bên trái và thu nhỏ khi mở menu
       transform: [
         {
-          translateX: interpolate(progress.value, [0, 1], [0, 240], 'clamp'), // Dịch chuyển sang trái
+          translateX: interpolate(progress.value, [0, 1], [0, 220], 'clamp'), // Dịch chuyển sang trái
         },
         {
           scale: interpolate(progress.value, [0, 1], [1, 0.9], 'clamp'), // Thu nhỏ màn hình
         },
       ],
       overflow: 'hidden',
-      borderRadius: progress.value > 0 ? 15 : 0, // Bán kính góc viền
+      borderRadius: drawerStatus=='open' ? 20 : 0, // Bán kính góc viền
     };
   });
 
@@ -38,12 +38,12 @@ const DrawerSceneWrapper = ({ children }) => {
   });
 
   return (
-    <View style={styles.container}>
-      <Animated.View style={[styles.shadow, shadowStyle]} />
-      <Animated.View style={[styles.animatedContainer, animatedStyle]}>
+      <Animated.View style={[styles.animatedContainer, animatedStyle,{flexDirection:'row',alignItems:'center'}]}>
+        {drawerStatus=='open'?<View style={{height:'90%',width:15,backgroundColor:'rgba(0, 0, 0, 0.2)',borderTopLeftRadius:20,borderBottomLeftRadius:20}}/>:<></>}
+        <View style={{flex:1}}>
         {children}
+        </View>
       </Animated.View>
-    </View>
   );
 };
 
@@ -52,10 +52,6 @@ export default DrawerSceneWrapper;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    position: 'relative', // Để cho phần shadow và animatedContainer có thể chồng lên nhau
-  },
-  shadow: {
-    
   },
   animatedContainer: {
     flex: 1,
