@@ -58,6 +58,6 @@ export const registerUser = createAsyncThunk(
 
 // Đăng xuất
 export const logoutUser = createAsyncThunk('auth/logout', async () => {
-  // Đơn giản hóa, không cần request API trong trường hợp này.
+  
   return {};
 });
