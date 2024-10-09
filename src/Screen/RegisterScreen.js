@@ -17,7 +17,7 @@ import SpaceComponent from '../Components/SpaceComponent';
 import InputComponent from '../Components/InputComponent';
 import ButtonComponent from '../Components/ButtonComponent';
 import CheckBox from '@react-native-community/checkbox';
-import { register } from '../redux/authActions';
+import { registerUser } from '../redux/authActions';
 const RegisterScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -36,7 +36,7 @@ const RegisterScreen = ({ navigation }) => {
     } else if (!isChecked) {
       Alert.alert('Error', 'Please accept the Terms & Conditions');
     } else {
-      dispatch(register(firstName, lastName, email, password));
+      dispatch(registerUser(firstName, lastName, email, password));
       if (error) {
         Alert.alert('Error', error);
       }

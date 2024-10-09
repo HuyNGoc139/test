@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import {
   View,
   Text,
@@ -14,17 +14,17 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 
 import { validateEmail, validatePassword } from '../Utils/validate';
-
 import SpaceComponent from '../Components/SpaceComponent';
 import InputComponent from '../Components/InputComponent';
 import ButtonComponent from '../Components/ButtonComponent';
-import { login } from '../redux/authActions';
+import { loginUser } from '../redux/authActions';
+
 const LoginScreen = ({ navigation }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
   const error = useSelector((state) => state.auth.error);
-  const [errText, setErrorText] = useState('');
+
   const handleLogin = useCallback(() => {
     if (!username || !password) {
       Alert.alert('Please enter your email and password!!!');
@@ -33,13 +33,17 @@ const LoginScreen = ({ navigation }) => {
     } else if (!validatePassword(password)) {
       Alert.alert('Password must be at least 6 characters');
     } else {
-      dispatch(login(username, password)).then(() => {
-        if (!error) {
-          // navigation.navigate('Home');
-        }
-      });
+      dispatch(loginUser({ username, password }));
     }
-  }, [username, password, dispatch, error, navigation]);
+  }, [username, password, dispatch, error]);
+
+  // Reset error khi người dùng nhập lại
+  useEffect(() => {
+    if (error) {
+      setUsername('');
+      setPassword('');
+    }
+  }, [error]);
 
   return (
     <View style={{ flex: 1 }}>
@@ -151,7 +155,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
     flex: 1,
   },
-
   input: {
     height: 50,
     color: '#fff',
@@ -170,7 +173,6 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: '400',
   },
-
   signupContainer: {
     flexDirection: 'row',
     justifyContent: 'center',

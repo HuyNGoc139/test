@@ -54,11 +54,11 @@ const StreakScreen = () => {
     () => ({
       '2024-10-07': {
         startingDay: true,
-        color: 'rgba(255, 87, 137, 1)', 
+        color: 'rgba(255, 87, 137, 1)',
         textColor: 'white',
         customStyles: {
           container: {
-            borderRadius: 25, 
+            borderRadius: 25,
             backgroundColor: 'rgba(255, 87, 137, 1)',
           },
         },
@@ -75,7 +75,7 @@ const StreakScreen = () => {
       },
       '2024-10-09': {
         endingDay: true,
-        color: 'rgba(255, 87, 137, 1)', 
+        color: 'rgba(255, 87, 137, 1)',
         textColor: 'white',
         customStyles: {
           container: {
