@@ -12,13 +12,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logoutUser } from '../redux/authActions';
 import DrawerSceneWrapper from '../Components/DrawerSceneWrapper';
 import { useFocusEffect } from '@react-navigation/native';
-import { useDrawerProgress } from '@react-navigation/drawer';
+import { useDrawerProgress,useDrawerStatus } from '@react-navigation/drawer';
 const HomeScreen = ({ navigation }) => {
   const user = useSelector((state) => state.auth.user);
   const isLogin = useSelector((state) => state.auth.isAuthenticated);
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
-  const progress = useDrawerProgress();
+  const drawerStatus = useDrawerStatus();
+  
   const handleLogout = useCallback(() => {
     dispatch(logoutUser());
   }, [dispatch]);
@@ -40,7 +41,7 @@ const HomeScreen = ({ navigation }) => {
       resizeMode="cover"
     >
       {/* Header */}
-      {isOpen && (
+      {drawerStatus=='open' && (
         <View
           style={{
             flexDirection: 'row',
@@ -86,7 +87,7 @@ const HomeScreen = ({ navigation }) => {
         </ImageBackground>
       </DrawerSceneWrapper>
       {/* Footer */}
-      {isOpen && (
+      {drawerStatus=='open' && (
         <View
           style={{ marginBottom: 20, marginLeft: 20, flexDirection: 'row' }}
         >
