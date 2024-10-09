@@ -22,7 +22,7 @@ const DrawerSceneWrapper = ({ children }) => {
         },
       ],
       overflow: 'hidden',
-      borderRadius: drawerStatus=='open' ? 20 : 0, // Bán kính góc viền
+      borderRadius: drawerStatus == 'open' ? 20 : 0, // Bán kính góc viền
     };
   });
 
@@ -38,12 +38,28 @@ const DrawerSceneWrapper = ({ children }) => {
   });
 
   return (
-      <Animated.View style={[styles.animatedContainer, animatedStyle,{flexDirection:'row',alignItems:'center'}]}>
-        {drawerStatus=='open'?<View style={{height:'90%',width:15,backgroundColor:'rgba(0, 0, 0, 0.2)',borderTopLeftRadius:20,borderBottomLeftRadius:20}}/>:<></>}
-        <View style={{flex:1}}>
-        {children}
-        </View>
-      </Animated.View>
+    <Animated.View
+      style={[
+        styles.animatedContainer,
+        animatedStyle,
+        { flexDirection: 'row', alignItems: 'center' },
+      ]}
+    >
+      {drawerStatus == 'open' ? (
+        <View
+          style={{
+            height: '90%',
+            width: 15,
+            backgroundColor: 'rgba(0, 0, 0, 0.2)',
+            borderTopLeftRadius: 20,
+            borderBottomLeftRadius: 20,
+          }}
+        />
+      ) : (
+        <></>
+      )}
+      <View style={{ flex: 1 }}>{children}</View>
+    </Animated.View>
   );
 };
 

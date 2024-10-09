@@ -58,6 +58,5 @@ export const registerUser = createAsyncThunk(
 
 // Đăng xuất
 export const logoutUser = createAsyncThunk('auth/logout', async () => {
-  
   return {};
 });

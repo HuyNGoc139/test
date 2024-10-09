@@ -66,7 +66,12 @@ const HomeScreen = ({ navigation }) => {
       )}
       <DrawerSceneWrapper>
         {/* View chứa ImageBackground để thêm border */}
-        <View style={[styles.backgroundContainer,{borderRadius: drawerStatus == 'open'?20:0,}]}>
+        <View
+          style={[
+            styles.backgroundContainer,
+            { borderRadius: drawerStatus == 'open' ? 20 : 0 },
+          ]}
+        >
           <ImageBackground
             style={styles.imageBackground}
             source={{
@@ -90,7 +95,9 @@ const HomeScreen = ({ navigation }) => {
       </DrawerSceneWrapper>
       {/* Footer */}
       {drawerStatus == 'open' && (
-        <View style={{ marginBottom: 20, marginLeft: 20, flexDirection: 'row' }}>
+        <View
+          style={{ marginBottom: 20, marginLeft: 20, flexDirection: 'row' }}
+        >
           <Text style={{ color: 'rgba(255, 255, 255, 1)' }}>Powered by </Text>
           <Text style={{ color: 'rgba(255, 255, 255, 1)', fontWeight: '700' }}>
             UpNow{' '}
@@ -106,7 +113,7 @@ const styles = StyleSheet.create({
     flex: 1,
     // borderWidth: 2, // Thêm viền
     borderColor: 'white', // Màu viền
-     // Độ bo góc
+    // Độ bo góc
     overflow: 'hidden', // Ẩn phần góc bo thừa của ảnh nền
   },
   imageBackground: {

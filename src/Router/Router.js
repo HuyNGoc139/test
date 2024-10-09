@@ -87,12 +87,11 @@ const DrawerNavigator = () => (
             ...options,
             source: require('../assets/ic_home_act.png'),
           }),
-        drawerLabelStyle: { fontWeight: 'bold' ,marginLeft:-10 },
+        drawerLabelStyle: { fontWeight: 'bold', marginLeft: -10 },
         drawerLabelStyleInactive: { fontWeight: '400' },
         drawerItemStyle: {
           borderTopLeftRadius: 100,
           borderBottomLeftRadius: 100,
-          
         },
       }}
     />
@@ -102,7 +101,7 @@ const DrawerNavigator = () => (
       options={{
         drawerIcon: (options) =>
           drawerImage({ ...options, source: require('../assets/Group1.png') }),
-          drawerLabelStyle: { fontWeight: 'bold' ,marginLeft:-10 },
+        drawerLabelStyle: { fontWeight: 'bold', marginLeft: -10 },
         drawerLabelStyleInactive: { fontWeight: '400' },
         drawerItemStyle: {
           borderTopLeftRadius: 100,
@@ -119,7 +118,7 @@ const DrawerNavigator = () => (
             ...options,
             source: require('../assets/ic_invite.png'),
           }),
-          drawerLabelStyle: { fontWeight: 'bold' ,marginLeft:-10 },
+        drawerLabelStyle: { fontWeight: 'bold', marginLeft: -10 },
         drawerLabelStyleInactive: { fontWeight: '400' },
         drawerItemStyle: {
           borderTopLeftRadius: 100,
@@ -133,7 +132,7 @@ const DrawerNavigator = () => (
       options={{
         drawerIcon: (options) =>
           drawerImage({ ...options, source: require('../assets/Vector4.png') }),
-        drawerLabelStyle: { fontWeight: 'bold',marginLeft:-10 },
+        drawerLabelStyle: { fontWeight: 'bold', marginLeft: -10 },
         drawerLabelStyleInactive: { fontWeight: '400' },
         drawerItemStyle: {
           borderTopLeftRadius: 100,
@@ -150,7 +149,7 @@ const DrawerNavigator = () => (
             ...options,
             source: require('../assets/ic_welcome.png'),
           }),
-        drawerLabelStyle: { fontWeight: 'bold',marginLeft:-10 },
+        drawerLabelStyle: { fontWeight: 'bold', marginLeft: -10 },
         drawerLabelStyleInactive: { fontWeight: '400' },
         drawerItemStyle: {
           borderTopLeftRadius: 100,
@@ -164,7 +163,7 @@ const DrawerNavigator = () => (
       options={{
         drawerIcon: (options) =>
           drawerImage({ ...options, source: require('../assets/ic_help.png') }),
-        drawerLabelStyle: { fontWeight: 'bold',marginLeft:-10 },
+        drawerLabelStyle: { fontWeight: 'bold', marginLeft: -10 },
         drawerLabelStyleInactive: { fontWeight: '400' },
         drawerItemStyle: {
           borderTopLeftRadius: 100,
@@ -178,7 +177,7 @@ const DrawerNavigator = () => (
       options={{
         drawerIcon: (options) =>
           drawerImage({ ...options, source: require('../assets/rewawrd.png') }),
-        drawerLabelStyle: { fontWeight: 'bold',marginLeft:-10 },
+        drawerLabelStyle: { fontWeight: 'bold', marginLeft: -10 },
         drawerLabelStyleInactive: { fontWeight: '400' },
         drawerItemStyle: {
           borderTopLeftRadius: 100,
@@ -195,7 +194,7 @@ const DrawerNavigator = () => (
             ...options,
             source: require('../assets/ic_settings.png'),
           }),
-        drawerLabelStyle: { fontWeight: 'bold' ,marginLeft:-10},
+        drawerLabelStyle: { fontWeight: 'bold', marginLeft: -10 },
         drawerLabelStyleInactive: { fontWeight: '400' },
         drawerItemStyle: {
           borderTopLeftRadius: 100,
@@ -212,7 +211,7 @@ const DrawerNavigator = () => (
             ...options,
             source: require('../assets/Group201.png'),
           }),
-        drawerLabelStyle: { fontWeight: 'bold' ,marginLeft:-10},
+        drawerLabelStyle: { fontWeight: 'bold', marginLeft: -10 },
         drawerLabelStyleInactive: { fontWeight: '400' },
         drawerItemStyle: {
           borderTopLeftRadius: 100,
