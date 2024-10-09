@@ -11,6 +11,7 @@
     "format": "prettier --write ."
   },
   "dependencies": {
+    "@react-native-community/checkbox": "^0.5.17",
     "@react-native-vector-icons/ionicons": "^7.4.0-alpha.27",
     "@react-navigation/drawer": "^6.7.2",
     "@react-navigation/native": "^6.1.18",

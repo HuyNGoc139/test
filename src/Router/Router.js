@@ -19,6 +19,7 @@ import VideoScreen from '../Screen/VideoScreen';
 import HelpScreen from '../Screen/HelpandSupport';
 import DisclaimerScreen from '../Screen/Disclaimer';
 import StreakScreen from '../Screen/StreakScreen';
+import RegisterScreen from '../Screen/RegisterScreen';
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 const drawerIcon = ({ focused, size }, name) => (
@@ -155,7 +156,10 @@ const Router = () => {
           <Stack.Screen name="StreakScreen" component={StreakScreen} />
         </>
       ) : (
-        <Stack.Screen name="Login" component={LoginScreen} />
+        <>
+          <Stack.Screen name="Login" component={LoginScreen} />
+          <Stack.Screen name="Register" component={RegisterScreen} />
+        </>
       )}
     </Stack.Navigator>
   );

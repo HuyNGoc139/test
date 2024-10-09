@@ -11,36 +11,37 @@ import {
   ImageBackground,
   Alert,
 } from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
-
 import { validateEmail, validatePassword } from '../Utils/validate';
 
 import SpaceComponent from '../Components/SpaceComponent';
 import InputComponent from '../Components/InputComponent';
 import ButtonComponent from '../Components/ButtonComponent';
-import { login } from '../redux/authActions';
-const LoginScreen = ({ navigation }) => {
-  const [username, setUsername] = useState('');
+import CheckBox from '@react-native-community/checkbox';
+import { register } from '../redux/authActions';
+const RegisterScreen = ({ navigation }) => {
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [isChecked, setIsChecked] = useState(false);
   const dispatch = useDispatch();
   const error = useSelector((state) => state.auth.error);
-  const [errText, setErrorText] = useState('');
-  const handleLogin = useCallback(() => {
-    if (!username || !password) {
-      Alert.alert('Please enter your email and password!!!');
-    } else if (!validateEmail(username)) {
+  const handleRegister = useCallback(() => {
+    if (!firstName || !lastName || !email || !password) {
+      Alert.alert('Error', 'Please fill all fields');
+    } else if (!validateEmail(email)) {
       Alert.alert('Please enter the correct email format');
     } else if (!validatePassword(password)) {
       Alert.alert('Password must be at least 6 characters');
+    } else if (!isChecked) {
+      Alert.alert('Error', 'Please accept the Terms & Conditions');
     } else {
-      dispatch(login(username, password)).then(() => {
-        if (!error) {
-          // navigation.navigate('Home');
-        }
-      });
+      dispatch(register(firstName, lastName, email, password));
+      if (error) {
+        Alert.alert('Error', error);
+      }
     }
-  }, [username, password, dispatch, error, navigation]);
-
+  }, [firstName, lastName, email, password, isChecked, error]);
   return (
     <View style={{ flex: 1 }}>
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
@@ -59,13 +60,24 @@ const LoginScreen = ({ navigation }) => {
           <SpaceComponent height={5} color="rgba(255, 255, 255, 0.1)" />
           <View style={styles.formContainer}>
             <Text style={[styles.upnow, { marginLeft: 14, marginBottom: 20 }]}>
-              Log In
+              Register
             </Text>
-
+            <InputComponent
+              placeholder="First name"
+              value={firstName}
+              onChangeText={setFirstName}
+              iconSource={require('../assets/ic_mail2.png')}
+            />
+            <InputComponent
+              placeholder="Last name"
+              value={lastName}
+              onChangeText={setLastName}
+              iconSource={require('../assets/ic_mail2.png')}
+            />
             <InputComponent
               placeholder="Email"
-              value={username}
-              onChangeText={setUsername}
+              value={email}
+              onChangeText={setEmail}
               iconSource={require('../assets/ic_mail.png')}
             />
             <InputComponent
@@ -76,50 +88,78 @@ const LoginScreen = ({ navigation }) => {
               secureTextEntry
               iconSource={require('../assets/Vector.png')}
             />
-
-            <TouchableOpacity>
-              <Text style={styles.forgotPasswordText}>Forget password?</Text>
-            </TouchableOpacity>
-
+            <View style={styles.containerPolicy}>
+              <CheckBox
+                value={isChecked}
+                onValueChange={setIsChecked}
+                style={styles.checkbox}
+                tintColors={{
+                  true: '#FF007F',
+                  false: 'rgba(164, 188, 193, 1)',
+                }}
+                onCheckColor="#FFF"
+                onTintColor="#FF007F"
+                onFillColor="transparent"
+              />
+              <View style={styles.containerWrap}>
+                <Text style={styles.signupText}>
+                  by clicking on “Register” you agree to our
+                </Text>
+                <TouchableOpacity>
+                  <Text
+                    style={[
+                      styles.signupText,
+                      { color: 'rgba(255, 88, 137, 1)' },
+                    ]}
+                  >
+                    Terms & Conditions{' '}
+                  </Text>
+                </TouchableOpacity>
+                <Text style={styles.signupText}>and</Text>
+                <TouchableOpacity>
+                  <Text
+                    style={[
+                      styles.signupText,
+                      { color: 'rgba(255, 88, 137, 1)' },
+                    ]}
+                  >
+                    {' '}
+                    Privacy Policy
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
             <ButtonComponent
-              title="Login"
+              title="Register"
               colors={['#FF5789', '#FF9B9C']}
-              onPress={handleLogin}
+              onPress={handleRegister}
             />
             <View style={styles.signupContainer}>
-              <Text style={styles.signupText}>Don't have an account?</Text>
-              <TouchableOpacity onPress={() => navigation.navigate('Register')}>
-                <Text style={styles.signupLink}>Sign Up</Text>
+              <Text style={styles.signupText}>Already have an account?</Text>
+              <TouchableOpacity onPress={() => navigation.replace('Login')}>
+                <Text style={styles.signupLink}>Log In</Text>
               </TouchableOpacity>
             </View>
-
-            <View style={styles.orTextContainer}>
-              <View style={styles.line}></View>
-              <Text style={styles.orText}>Or Log in with</Text>
-              <View style={styles.line}></View>
-            </View>
-
-            <ButtonComponent
-              title="Log in with Facebook"
-              backgroundColor="#rgba(63, 96, 178, 1)"
-              source={require('../assets/fb.png')}
-            />
-
-            <ButtonComponent
-              title="Log in with Apple"
-              backgroundColor="#000"
-              source={require('../assets/Vector1.png')}
-            />
           </View>
         </ImageBackground>
       </ScrollView>
     </View>
   );
 };
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  containerPolicy: {
+    flex: 1,
+    flexDirection: 'row',
+  },
+  containerWrap: {
+    flexWrap: 'wrap',
+    flexDirection: 'row',
+  },
+  checkbox: {
+    marginRight: 10,
   },
   header: {
     flexDirection: 'row',
@@ -150,18 +190,6 @@ const styles = StyleSheet.create({
     marginTop: 20,
     paddingHorizontal: 30,
     flex: 1,
-  },
-
-  input: {
-    height: 50,
-    color: '#fff',
-    paddingHorizontal: 15,
-    flex: 1,
-  },
-  icon: {
-    width: 24,
-    height: 24,
-    marginLeft: 10,
   },
   forgotPasswordText: {
     color: 'rgba(255, 255, 255, 1)',
@@ -204,6 +232,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginHorizontal: 20,
   },
+  linkText: {
+    color: '#FF007F', // Pink color for the links
+    fontWeight: 'bold',
+  },
+  textRegis: {
+    fontSize: 14,
+    color: '#fff',
+    flex: 1,
+    flexWrap: 'wrap',
+  },
 });
-
-export default LoginScreen;
+export default RegisterScreen;

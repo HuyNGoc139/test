@@ -52,20 +52,19 @@ const StreakScreen = () => {
 
   const markedDates = useMemo(
     () => ({
-      '2024-10-06': {
+      '2024-10-07': {
         startingDay: true,
-        endingDay: false,
-        color: 'rgba(255, 87, 137, 1)', // Màu cho ngày bắt đầu
+        color: 'rgba(255, 87, 137, 1)', 
         textColor: 'white',
         customStyles: {
           container: {
-            borderRadius: 25, // Bo tròn góc
+            borderRadius: 25, 
             backgroundColor: 'rgba(255, 87, 137, 1)',
           },
         },
       },
-      '2024-10-07': {
-        color: 'rgba(0, 0, 0, 0.2)', // Màu cho các ngày ở giữa
+      '2024-10-08': {
+        color: 'rgba(0, 0, 0, 0.2)',
         textColor: 'white',
         customStyles: {
           container: {
@@ -74,13 +73,13 @@ const StreakScreen = () => {
           },
         },
       },
-      '2024-10-08': {
+      '2024-10-09': {
         endingDay: true,
-        color: 'rgba(255, 87, 137, 1)', // Màu cho ngày kết thúc
+        color: 'rgba(255, 87, 137, 1)', 
         textColor: 'white',
         customStyles: {
           container: {
-            borderRadius: 25, // Bo tròn góc
+            borderRadius: 25,
             backgroundColor: 'rgba(255, 87, 137, 1)',
           },
         },
@@ -113,7 +112,7 @@ const StreakScreen = () => {
             <Text style={styles.longestStreakText}>Longest streak: 2</Text>
           </View>
         </View>
-        <SpaceComponent height={30}/>
+        <SpaceComponent height={30} />
         <View style={styles.calenderContainer}>
           <View style={styles.monthNavigation}>
             {getDisplayedMonths.map((month, index) => (
@@ -140,7 +139,7 @@ const StreakScreen = () => {
           </View>
 
           <Calendar
-            key={currentMonth} // Sử dụng key để buộc render lại khi currentMonth thay đổi
+            key={currentMonth}
             current={currentMonth}
             theme={{
               backgroundColor: 'transparent',
