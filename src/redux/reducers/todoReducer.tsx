@@ -34,7 +34,7 @@ const todosSlice = createSlice({
   name: 'todos',
   initialState,
   reducers: {
-    addTodo: (state, action: any) => {
+    addTodo: (state, action: PayloadAction<Todo>) => {
       state.todos.push(action.payload);
     },
     toggleTodo: (state, action: PayloadAction<number>) => {
