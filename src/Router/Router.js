@@ -19,6 +19,7 @@ import HelpScreen from '../Screen/HelpandSupport';
 import DisclaimerScreen from '../Screen/Disclaimer';
 import StreakScreen from '../Screen/StreakScreen';
 import RegisterScreen from '../Screen/RegisterScreen';
+import TodoScreen from '../Screen/TodoItemScreen';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -232,6 +233,7 @@ const Router = () => {
           <Stack.Screen name="Drawer" component={DrawerNavigator} />
           <Stack.Screen name="UserInfo" component={UserInfo} />
           <Stack.Screen name="StreakScreen" component={StreakScreen} />
+          <Stack.Screen name="TodoScreen" component={TodoScreen} />
         </>
       ) : (
         <>

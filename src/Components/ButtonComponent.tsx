@@ -7,7 +7,7 @@ interface Props {
   onPress?: () => void;
   title: string;
   colors?: string[];
-  backgroundColor: string;
+  backgroundColor?: string;
   source?: any;
 }
 

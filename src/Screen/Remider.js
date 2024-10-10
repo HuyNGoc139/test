@@ -20,7 +20,7 @@ import {
   selectFilteredTodos,
 } from '../redux/reducers/todoReducer';
 import CheckBox from '@react-native-community/checkbox';
-const RemiderScreen = () => {
+const RemiderScreen = (navigation) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [search, setSearch] = useState('');
@@ -82,7 +82,9 @@ const RemiderScreen = () => {
         <FlatList
           data={filteredTodos}
           keyExtractor={(item) => item.id.toString()}
-          renderItem={({ item }) => <TodoComponent item={item} />}
+          renderItem={({ item }) => (
+            <TodoComponent item={item} navigation={navigation} />
+          )}
           ListEmptyComponent={<Text>No Todos Available</Text>}
         />
       </View>

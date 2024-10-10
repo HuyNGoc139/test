@@ -7,6 +7,9 @@ interface Props {
   secureTextEntry?: boolean;
   iconSource?: any;
   inputpassword?: boolean;
+  multiline?: boolean;
+  numberOfLines?: number;
+  height?: number;
 }
 const InputComponent = (prop: Props) => {
   const {
@@ -16,6 +19,9 @@ const InputComponent = (prop: Props) => {
     iconSource,
     secureTextEntry,
     inputpassword,
+    multiline,
+    numberOfLines,
+    height,
   } = prop;
   return (
     <View style={styles.inputContainer}>
@@ -27,11 +33,14 @@ const InputComponent = (prop: Props) => {
       )}
       <TextInput
         placeholder={placeholder}
+        textAlign="left"
         placeholderTextColor="#rgba(130, 129, 135, 1)"
-        style={styles.input}
+        style={[styles.input, { height: height ? height : 50 }]}
         value={value}
         onChangeText={onChangeText}
         secureTextEntry={secureTextEntry}
+        multiline={multiline}
+        numberOfLines={numberOfLines}
       />
     </View>
   );
@@ -40,7 +49,7 @@ const InputComponent = (prop: Props) => {
 const styles = StyleSheet.create({
   inputContainer: {
     backgroundColor: 'rgba(255, 255, 255, 0.1)',
-    borderRadius: 100,
+    borderRadius: 25,
     marginBottom: 20,
     flexDirection: 'row',
     alignItems: 'center',
@@ -50,6 +59,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     paddingHorizontal: 15,
     flex: 1,
+    alignContent: 'flex-start',
   },
   icon: {
     width: 24,

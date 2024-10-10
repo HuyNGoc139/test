@@ -3,12 +3,15 @@ import React, { useCallback, useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { addTodo, toggleTodo, removeTodo } from '../redux/reducers/todoReducer';
+import { useNavigation } from '@react-navigation/native';
 
-const TodoComponent = ({ item }: any) => {
+const TodoComponent = ({ item }) => {
   const dispatch = useDispatch();
+  const navigation = useNavigation();
+
   const onToggleCompleted = useCallback(() => {
     dispatch(toggleTodo(item.id));
-  }, [dispatch, item.id]); // Chỉ tạo lại khi dispatch hoặc item.id thay đổi
+  }, [dispatch, item.id]);
 
   const handleRemove = useCallback(() => {
     Alert.alert(
@@ -32,9 +35,11 @@ const TodoComponent = ({ item }: any) => {
   return (
     <View style={styles.container}>
       <CheckBox value={item.completed} onValueChange={onToggleCompleted} />
-      {/* Thông tin todo */}
       <View style={styles.textContainer}>
-        <View style={{}}>
+        <TouchableOpacity
+          style={{ width: 200 }}
+          onPress={() => navigation.navigate('TodoScreen', { item })}
+        >
           <Text
             style={[
               styles.title,
@@ -43,9 +48,15 @@ const TodoComponent = ({ item }: any) => {
           >
             {item.title}
           </Text>
-          <Text style={styles.description}>{item.description}</Text>
-        </View>
-        <View style={{ flex: 1, justifyContent: 'center' }}>
+          <Text
+            style={styles.description}
+            numberOfLines={1}
+            ellipsizeMode="tail"
+          >
+            {item.description}
+          </Text>
+        </TouchableOpacity>
+        <View style={styles.actionsContainer}>
           {item.completed && <Text style={styles.completeText}>Complete</Text>}
           <TouchableOpacity onPress={handleRemove}>
             <Text style={[styles.completeText, { color: 'red' }]}>Remove</Text>
@@ -55,8 +66,6 @@ const TodoComponent = ({ item }: any) => {
     </View>
   );
 };
-
-export default TodoComponent;
 
 const styles = StyleSheet.create({
   container: {
@@ -68,11 +77,14 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.2)',
     marginBottom: 20,
     borderRadius: 20,
-    paddingRight: 50,
+    marginRight: 10,
   },
   textContainer: {
     marginLeft: 10,
     flexDirection: 'row',
+    justifyContent: 'space-between', // Tạo khoảng cách giữa các phần tử
+    flex: 1, // Cho phép textContainer sử dụng toàn bộ chiều rộng
+    // maxWidth:260
   },
   title: {
     fontSize: 18,
@@ -83,6 +95,11 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#888',
   },
+  actionsContainer: {
+    justifyContent: 'center',
+    alignItems: 'flex-end', // Đảm bảo Remove nằm bên phải
+    marginLeft: 10, // Khoảng cách giữa mô tả và nút Remove
+  },
   completeText: {
     fontSize: 14,
     color: 'green',
@@ -90,3 +107,4 @@ const styles = StyleSheet.create({
     textAlign: 'right',
   },
 });
+export default TodoComponent;
